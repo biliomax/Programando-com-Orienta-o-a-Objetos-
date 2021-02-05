@@ -2,12 +2,12 @@
 <pais>
     <nome> Brasil </nome>
     <idioma> portugues </idioma>
-    <religiao> catolica </religiao>
+    <religiao>cristianismo</religiao>
     <moeda> Real (R$) </moeda>
-    <populacao> 190 milhoes </populacao>
+    <populacao>220 milhares</populacao>
     <geografia>
-        <clima> tropical </clima>
+        <clima>temperado</clima>
         <costa> 7367 KM </costa>
         <pico> Neblina (3014 m) </pico>
     </geografia>
-</pais>
+<presidente>Chapolin Colorado</presidente></pais>
