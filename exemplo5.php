@@ -17,5 +17,3 @@ var_dump($xml->asXML());
 // grava no arquivo paises2.xml
 file_put_contents('paises2.xml', $xml->asXML());
 
-// exibido o novo XML
-var_dump($xml->asXML());

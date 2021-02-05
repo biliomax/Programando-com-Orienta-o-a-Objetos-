@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<pais>
+    <nome> Brasil </nome>
+    <idioma> portugues </idioma>
+    <religiao>cristianismo</religiao>
+    <moeda> Real (R$) </moeda>
+    <populacao>190 milhares</populacao>
+    <geografia>
+        <clima>temperado</clima>
+        <costa> 7367 Km </costa>
+        <pico> Neblina (3014 m) </pico>
+    </geografia>
+    <estados>
+        <nome> Rio Grande do Sul </nome>
+        <nome> São Paulo </nome>
+        <nome> Minas Gerais </nome>
+        <nome> Rio de Janeiro </nome>
+        <nome> Paraná </nome>
+        <nome> Mato Grosso </nome>
+    </estados>
+</pais>
