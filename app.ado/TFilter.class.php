@@ -7,7 +7,7 @@
  * Esta classe provê uma interface para definição de filtros de seleção
  */
 
-class TFilter {
+class TFilter extends TExpression {
 
     // declaração de atributos
     private $variable; // variável

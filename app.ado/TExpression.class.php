@@ -1,9 +1,14 @@
 <?php
+/**
+ * classe TExpression
+ * classe abstrata para gerenciar expressões
+ */
+abstract class TExpression {
 
-class TExpression {
+    // operadores lógicos
+    const AND_OPERATOR = 'AND ';
+    const OR_OPERATOR = 'OR ';
 
-    // implentação da classe pai
-    function getInstruction(){
-        
-    }
+    // marca método dump como obrigatório
+    abstract public function dump();
 }

@@ -21,7 +21,7 @@
 
         // na primeira vez, não precisamos de operador lógico para concatenar
         if(empty($this->expressions)){
-            unset($operator);
+            #unset($operator);
         }
 
         // agrega o resultado da expressão à lista de expressões
@@ -35,11 +35,12 @@
      */
 
      public function dump(){
-
+        $result = '';
         // concatena a lista de expressões
         if(is_array($this->expressions)){
 
             foreach($this->expressions as $i=> $expression){
+                
                 $operator = $this->operators[$i];
 
                 // concatena o operador com a respectiva expressão
