@@ -21,7 +21,7 @@
 
         // na primeira vez, não precisamos de operador lógico para concatenar
         if(empty($this->expressions)){
-            #unset($operator);
+            unset($operator);
         }
 
         // agrega o resultado da expressão à lista de expressões
