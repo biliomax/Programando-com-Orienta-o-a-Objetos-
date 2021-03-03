@@ -27,7 +27,7 @@ final class TSqlSelect extends TSqlInstruction {
 
      /**
       * método getInstruction()
-      * retorna a nistrução de SELECT em forma de string.
+      * retorna a instrução de SELECT em forma de string.
       */
       public function getInstruction(){
           // monta a instrução de SELECT
@@ -36,7 +36,10 @@ final class TSqlSelect extends TSqlInstruction {
           // monta string com os nomes de colunas
           $this->sql .= implode(',', $this->columns);
 
-          // adiciona a cláusula WHERE do objeto criteria.
+          // adiciona a cláusula FROM o nome da tabela
+          $this->sql .= ' FROM ' . $this->entity;
+
+          // obtém a cláusula WHERE do objeto criteria.
           if($this->criteria){
 
             $expression = $this->criteria->dump();
