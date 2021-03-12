@@ -9,7 +9,7 @@ function __autoload($classe){
     if(file_exists("app.ado/{$classe}.class.php")){
         include_once "app.ado/{$classe}.class.php";
     }
-
+}
     try{
         // abre uma transação
         TTransaction::open('my_livro');
@@ -65,4 +65,3 @@ function __autoload($classe){
         // desfaz operações relaizadas durante a transação
         TTransaction::rollback();
     }
-}
