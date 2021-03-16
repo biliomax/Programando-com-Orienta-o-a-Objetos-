@@ -20,8 +20,10 @@
     public function add(TExpression $expression, $operator = self::AND_OPERATOR){
 
         // na primeira vez, não precisamos de operador lógico para concatenar
-        if(empty($this->expressions)){
-            unset($operator);
+        if(empty($this->expressions))
+        {
+            #unset($operator); // Assim dar erro
+            $operator = null; // Peguei nesse site: https://forum.scriptbrasil.com.br/topic/162753-problema-com-vari%C3%A1vel-indefinida/
         }
 
         // agrega o resultado da expressão à lista de expressões

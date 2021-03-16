@@ -6,6 +6,7 @@
  final class TTransaction {
      
     private static $conn; // conexão ativa
+    private static $logger; // objeto de LOG
 
     /*
     * método __construct()
@@ -26,6 +27,9 @@
             self::$conn = TConnection::open($database);
             // inicia a transação
             self::$conn->beginTransaction();
+
+            // desliga o log de SQL
+            self::$logger = NULL;
         }
     }
 
@@ -51,17 +55,38 @@
         }
     }
 
-     /*
-     * método close()
-     * Aplica todas operações relaizadas e fecha a transação
-     */
-     public static function clone(){
+    /*
+    * método close()
+    * Aplica todas operações relaizadas e fecha a transação
+    */
+    public static function clone(){
 
-         if(self::$conn){
-             // aplica as operações relaizadas
-             // durante a transação
-             self::$conn->commit();
-             self::$conn = NULL;
-         }
-     }
+        if(self::$conn){
+            // aplica as operações relaizadas
+            // durante a transação
+            self::$conn->commit();
+            self::$conn = NULL;
+        }
+    }
+
+     /*
+     * método setLogger()
+     * define qual estatégia (algoritmo de LOG será usado)
+     */
+    public static function setLogger(TLogger $logger){
+        self::$logger = $logger;
+    }
+
+    /*
+    * método log()
+    * armazena uma mensagem no arquivo de LOG
+    * baseada na estratégia ($logger) atual
+    */
+    public static function log($message){
+
+        // verifica se existe um logger
+        if(self::$logger){
+            self::$logger->write($message);
+        }
+    }
  }

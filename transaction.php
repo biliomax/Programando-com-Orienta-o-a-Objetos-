@@ -37,8 +37,8 @@ function __autoload($classe){
         $sql->setEntity('famosos');
 
         // atribui o valor de cada coluna
-        $sql->setRowData('nome','Galileu Galilei');
-        #$sql->setRowData('nome_', 'Galileu Galilei');
+        #$sql->setRowData('nome','Galileu Galilei');
+        $sql->setRowData('nome_', 'Galileu Galilei');
 
         // cria critério de seleção de dados
         $criteria = new TCriteria;
