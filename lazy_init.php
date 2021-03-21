@@ -4,7 +4,7 @@
  */
 class Pessoa {
     private $nome; // nome da pessoa
-    private $cidadadeID; // ID da cidade.
+    private $cidadeID; // ID da cidade.
 
     /**
      * método construtor
@@ -15,7 +15,7 @@ class Pessoa {
 
     function __construct($nome, $cidadeID){
 
-        $this->nome     = $nome;
+        $this->nome = $nome;
         $this->cidadeID = $cidadeID;
     }
 
@@ -29,7 +29,7 @@ class Pessoa {
 
         if($propriedade == 'cidade')
         {
-            return new Cidade($this->cidadadeID);
+            return new Cidade($this->cidadeID);
         }
     }
 }
@@ -58,7 +58,7 @@ class Cidade {
         $this->id = $id;
 
         // define seu nome
-        $this->setNome($data[$id]); // Essa linha tem um problema
+        $this->setNome($data[$id]);
      }
 
       /*
