@@ -55,6 +55,85 @@
         unset($conn);
     }
 
+    /**
+     * método delete
+     * deleta um registro na tabela de Produtos
+     * @param $id = ID do produto
+     */
+    function delete($id){
+      
+      // Cria instrução SQL de DELETE
+      $sql = "DELETE FROM produtos where id = '$id'";
 
+      // instancia objeto PDO 
+      $conn = new PDO('mysql:host=localhost;dbname=livro;','root','');
+      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
+
+      // executa instrução SQL
+      $conn->exec($sql);
+      unset($conn);
+    }
+
+    /**
+     * método getObject
+     * busca um registro da tabela de produtos
+     * @param $id = ID do produto 
+     */
+    function getObject($id){
+
+      // Cria instrução SQL de SELECT
+      $sql = "SELECT * FROM produtos where id = '$id'";
+
+      // instancia objeto PDO 
+      $conn = new PDO('mysql:host=localhost;dbname=livro;','root','');
+      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
+
+      // executa instrução SQL
+      $result = $conn->query($sql);
+      $data = $result->fetch(PDO::FETCH_ASSOC);
+      
+      unset($conn);
+      return $data;
+    }
+
+    /**
+     * método getObjects
+     * lista todos registros da tabela de produtos
+     */
+    function getObjects(){
+
+      // Cria instrução SQL de SELECT
+      $sql = "SELECT * FROM produtos";
+
+      // instancia objeto PDO
+      $conn = new PDO('mysql:host=localhost;dbname=livro;','root','');
+      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
+
+      // executa a consulta SQL
+      $result = $conn->query($sql);
+      $data = $result->fetchAll(PDO::FETCH_ASSOC);
+      unset($conn);
+      return $data;
+    }
 
  }
+
+ // Instancia objeto produtoGateway
+ $gateway = new ProdutoGateway;
+
+ // insere alguns registros na tabela
+ $gateway->insert(1, 'Vinho', 10, 10);
+ $gateway->insert(2, 'Salame', 20, 20);
+ $gateway->insert(3, 'Queijo', 30, 30);
+
+ // efetua algumas alterações
+ $gateway->update(1, 'Vinho', 20, 20);
+ $gateway->update(1, 'Salame', 40, 40);
+
+ // exclui o produto 3
+ $gateway->delete(3);
+
+ // exibe novamente os registros
+ echo "Lista de Produtos <br>\n";
+ echo "<pre>";
+ print_r($gateway->getObjects());
