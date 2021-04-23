@@ -37,7 +37,7 @@ class ProdutoGateway {
         $sql = "UPDATE produtos set ".
                "  descricao    = '$object->descricao',".
                "  estoque      = '$object->estoque',".
-               "  preco_custo  = '$object->preco_custo',".
+               "  preco_custo  = '$object->preco_custo'".
                "  WHERE id     = '$object->id'";
 
         // Instancia objeto PDO
@@ -57,7 +57,7 @@ class ProdutoGateway {
     function getObject($id){
 
         // Cria instrução SQL de SELECT
-        $sql = "SELECT * FROM produtos WHERE id='$id'";
+        $sql = "SELECT * FROM produtos WHERE id = '$id'";
 
         // Instancia objeto PDO
         $conn = new PDO('mysql:host=localhost;dbname=livro;','root','');
