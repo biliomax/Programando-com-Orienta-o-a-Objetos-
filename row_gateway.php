@@ -104,7 +104,7 @@
 
     // insere produtos na tabela de dados
     $vinho = new ProdutoGateway;
-    $vinho->id             = 1;
+    $vinho->id              = 1;
     $vinho->descricao       = 'Vinho Cabernet';
     $vinho->estoque         = 10;
     $vinho->preco_custo     = 10;
