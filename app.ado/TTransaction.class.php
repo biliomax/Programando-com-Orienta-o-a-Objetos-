@@ -59,7 +59,7 @@
     * método close()
     * Aplica todas operações relaizadas e fecha a transação
     */
-    public static function clone(){
+    public static function close(){
 
         if(self::$conn){
             // aplica as operações relaizadas

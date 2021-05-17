@@ -38,7 +38,7 @@
      * método __set()
      * executado sempre que uma propriedade for atribuida.
      */
-    private function __set($prop, $value){
+    public function __set($prop, $value){
 
         // verifica se existe método set_<propriedade>
         if(method_exists($this, 'set_'.$prop)){
@@ -54,7 +54,7 @@
      * método __get()
      * executado sempre que uma propriedade for requerida
      */
-    private function __get($prop)
+    public function __get($prop)
     {
         // verifica se existe método get_<propriedade>
         if(method_exists($this, 'get_'.$prop)){
@@ -114,7 +114,7 @@
             foreach($this->data as $key => $value){
 
                 // passa os dados do objeto para o SQL
-                $sql->setRowData($key, $this->key);
+                $sql->setRowData($key, $this->$key);
             }
         } else {
             // instancia instrução de update

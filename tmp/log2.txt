@@ -1,0 +1,4 @@
+2021-05-17 02:03:26 :: SELECT * FROM aluno WHERE (id = 1)
+2021-05-17 02:03:26 :: SELECT * FROM aluno WHERE (id = 2)
+2021-05-17 02:03:26 :: SELECT * FROM curso WHERE (id = 1)
+2021-05-17 02:03:26 :: SELECT * FROM curso WHERE (id = 2)
