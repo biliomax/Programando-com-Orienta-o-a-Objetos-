@@ -1,0 +1,10 @@
+2021-05-31 01:35:51 :: ** obtendo o aluno 1
+2021-05-31 01:35:51 :: SELECT * FROM aluno WHERE (id = 1)
+2021-05-31 01:35:51 :: ** persistindo o aluno 1
+2021-05-31 01:35:51 :: SELECT * FROM aluno WHERE (id = '1')
+2021-05-31 01:35:51 :: UPDATE aluno SET nome = 'Daline Dall Oglio', endereco = 'Rua da Conceição', telefone = '(51) 1111-3333', cidade = 'Cruzeiro do Sul' WHERE (id = '1')
+2021-05-31 01:35:51 :: ** obtendo o curso 1
+2021-05-31 01:35:51 :: SELECT * FROM curso WHERE (id = 1)
+2021-05-31 01:35:51 :: ** presistindo o curso 1
+2021-05-31 01:35:51 :: SELECT * FROM curso WHERE (id = '1')
+2021-05-31 01:35:51 :: UPDATE curso SET descricao = 'Orientação a Objetos com PHP', duracao = 28 WHERE (id = '1')
