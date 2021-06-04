@@ -8,17 +8,15 @@
             "name": "Listen for Xdebug",
             "type": "php",
             "request": "launch",
-            "port": 80
+            "port": 8080
         },
         {
+            "name": "Launch currently open script",
             "type": "php",
             "request": "launch",
-            "name": "Launch Program",
-            "cwd": "${workspaceRoot}",
-            "pathMappings": {
-                "xampp/htdocs": "${workspaceRoot}",
-            },
-            "port": 80
-        },
+            "program": "${file}",
+            "cwd": "${fileDirname}",
+            "port": 8080
+        }
     ]
 }

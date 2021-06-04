@@ -1,0 +1,6 @@
+2021-06-04 12:22:00 :: ** persistindo o curso $fabio
+2021-06-04 12:22:00 :: SELECT max(ID) as ID FROM aluno
+2021-06-04 12:22:00 :: INSERT INTO aluno (nome, endereco, telefone, cidade, id) VALUES ('Fabio Locatelli', 'Rua Merlin', '(51) 2222-1111', 'Lajeado', 3)
+2021-06-04 12:22:00 :: ** persistindo o curso $julia
+2021-06-04 12:22:00 :: SELECT max(ID) as ID FROM aluno
+2021-06-04 12:22:00 :: INSERT INTO aluno (nome, endereco, telefone, cidade, id) VALUES ('Júlia Haubert', 'Rua Merlin', '(51) 2222-2222', 'Lajeado', 4)

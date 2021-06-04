@@ -1,0 +1,5 @@
+2021-06-04 12:21:21 :: ** Apagando da primeira forma
+2021-06-04 12:21:21 :: SELECT * FROM aluno WHERE (id = 1)
+2021-06-04 12:21:21 :: DELETE FROM aluno WHERE (id = '1')
+2021-06-04 12:21:21 :: ** Apagando da segunda forma
+2021-06-04 12:21:21 :: DELETE FROM aluno WHERE (id = 2)

@@ -14,7 +14,7 @@ class TSqlDelete extends TSqlInstruction {
     function getInstruction(){
         
         // monta a string de DELETE
-        $this->sql = "DELETE FORM {$this->entity}";
+        $this->sql = "DELETE FROM {$this->entity}";
 
         // retorna a clásula WHERE do objeto $this->criteria
         if($this->criteria){
