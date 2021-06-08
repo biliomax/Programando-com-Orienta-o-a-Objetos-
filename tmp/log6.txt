@@ -1,0 +1,4 @@
+2021-06-08 12:53:14 :: SELECT * FROM turma WHERE (turno = 'T' AND encerrada = FALSE)
+2021-06-08 12:53:14 :: SELECT * FROM Inscricao WHERE (nota >= 7 AND frequencia >= 75 AND ref_turma = 1 AND cancelada = FALSE)
+2021-06-08 12:53:14 :: SELECT * FROM aluno WHERE (id = '1')
+2021-06-08 12:53:14 :: SELECT * FROM aluno WHERE (id = '2')

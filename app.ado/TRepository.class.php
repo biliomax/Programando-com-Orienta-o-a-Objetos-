@@ -42,14 +42,16 @@ final class TRepository {
             $result = $conn->Query($sql->getInstruction());
 
             if($result){
-                // percorre os resultados da consulta, retornando um objeto
                 
+                // percorre os resultados da consulta, retornando um objeto
                 while($row = $result->fetchObject($this->class . 'Record')){
+                    
                     // armazena no array $results;
                     $results[] = $row;
                 }
             }
             return $results;
+
         } else {
             
             // se não tiver transação, retorna uma exceção
@@ -89,4 +91,39 @@ final class TRepository {
         }
     }
 
+    /**
+     * método count()
+     * Retorna a quantidade de objetos da base de dados
+     * que satisfazem um determinado criterio de seleção.
+     * @param $criteria = objeto do tipo Tcriteria
+     */
+    function count(TCriteria $criteria){
+
+        // instancia instrução de SELECT
+        $sql = new TSqlSelect;
+        $sql->addColumn('count(*)');
+        $sql->setEntity($this->class);
+
+        // atribui o criterio passado como parâmetro
+        $sql->setCriteria($criteria);
+
+        // obtém transação ativa
+        if($conn = TTransaction::get()){
+
+            // registra mensagem de log
+            TTransaction::log($sql->getInstruction());
+
+            // executa instrução de SELECT
+            $result = $conn->Query($sql->getInstruction());
+
+            if($result){
+                $row = $result->fetch();
+            }
+            // retorna o resultado
+            return $row[0];
+        } else {
+            // se não tiver transação, retorna uma exceção
+            throw new Exception('Não há transação ativa!');
+        }
+    }
 }
