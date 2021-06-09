@@ -71,6 +71,6 @@
        */
 
     public function getProperty($property){
-        return $this->properties[$property]; // pagina 180
+        #return $this->properties[$property]; // pagina 180
     }
  }

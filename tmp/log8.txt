@@ -1,0 +1,4 @@
+2021-06-09 12:36:31 :: ** Conta Alunos de Porto Alegre
+2021-06-09 12:36:31 :: SELECT count(*) FROM Aluno WHERE (cidade = 'Porto Alegre')
+2021-06-09 12:36:31 :: ** Conta Turmas
+2021-06-09 12:36:31 :: SELECT count(*) FROM Turma WHERE ((sala = '100' AND turno = 'T') OR (sala = '200' AND turno = 'M'))

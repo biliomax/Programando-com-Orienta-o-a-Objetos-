@@ -1,0 +1,7 @@
+2021-06-09 12:25:31 :: ** seleciona inscrições da turma 2
+2021-06-09 12:25:31 :: SELECT * FROM Inscricao WHERE (ref_turma = 2 AND cancelada = FALSE)
+2021-06-09 12:25:31 :: ** altera as inscrições
+2021-06-09 12:25:31 :: SELECT * FROM inscricao WHERE (id = '4')
+2021-06-09 12:25:31 :: UPDATE inscricao SET ref_aluno = '4', ref_turma = '2', nota = 8, frequencia = 75, cancelada = '0', concluida = '0' WHERE (id = '4')
+2021-06-09 12:25:31 :: SELECT * FROM inscricao WHERE (id = '5')
+2021-06-09 12:25:31 :: UPDATE inscricao SET ref_aluno = '4', ref_turma = '2', nota = 8, frequencia = 75, cancelada = '0', concluida = '0' WHERE (id = '5')

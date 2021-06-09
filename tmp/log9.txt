@@ -1,0 +1,6 @@
+2021-06-09 13:09:57 :: ** exclui as turmas da tarde
+2021-06-09 13:09:57 :: SELECT * FROM Turma WHERE (turno = 'T')
+2021-06-09 13:09:58 :: DELETE FROM turma WHERE (id = '1')
+2021-06-09 13:09:58 :: DELETE FROM turma WHERE (id = '4')
+2021-06-09 13:09:58 :: ** exclui as inscrições do aluno '1'
+2021-06-09 13:09:58 :: DELETE FROM inscricao WHERE (ref_aluno = 1)
