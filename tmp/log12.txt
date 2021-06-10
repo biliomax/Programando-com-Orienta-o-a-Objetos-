@@ -1,0 +1,8 @@
+2021-06-10 11:50:18 :: ** inserindo o aluno $carlos
+2021-06-10 11:50:18 :: SELECT max(ID) as ID FROM aluno
+2021-06-10 11:50:18 :: INSERT INTO aluno (nome, endereco, telefone, cidade, id) VALUES ('Carlos Ranzi', 'Rua Francisco Oscar', '(51) 1234-5678', 'Lajeado', 5)
+2021-06-10 11:50:18 :: ** inscrevendo o aluno nas turmas
+2021-06-10 11:50:18 :: SELECT max(ID) as ID FROM inscricao
+2021-06-10 11:50:18 :: INSERT INTO inscricao (ref_aluno, ref_turma, id) VALUES (5, 1, 7)
+2021-06-10 11:50:18 :: SELECT max(ID) as ID FROM inscricao
+2021-06-10 11:50:18 :: INSERT INTO inscricao (ref_aluno, ref_turma, id) VALUES (5, 2, 8)

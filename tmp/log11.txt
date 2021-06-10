@@ -1,0 +1,8 @@
+2021-06-10 11:24:33 :: ** obtendo o aluno de uma inscrição
+2021-06-10 11:24:33 :: SELECT * FROM inscricao WHERE (id = 2)
+2021-06-10 11:24:33 :: SELECT * FROM aluno WHERE (id = '2')
+2021-06-10 11:24:33 :: SELECT * FROM aluno WHERE (id = '2')
+2021-06-10 11:24:33 :: SELECT * FROM aluno WHERE (id = '2')
+2021-06-10 11:24:33 :: ** obtendo as inscrições de um aluno
+2021-06-10 11:24:33 :: SELECT * FROM aluno WHERE (id = 2)
+2021-06-10 11:24:33 :: SELECT * FROM Inscricao WHERE (ref_aluno = '2')
