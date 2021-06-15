@@ -33,7 +33,7 @@ foreach($dados as $pessoa){
     // exibe o site
     echo "<td>{$pessoa[2]}</td>";
     // exibe o salário
-    echo "<td align='rigt'>{$pessoa[3]}</td>";
+    echo "<td align='right'>{$pessoa[3]}</td>";
     echo '</tr>';
 
     $total += $pessoa[3]; // soma o salário
