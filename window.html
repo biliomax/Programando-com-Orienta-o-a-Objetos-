@@ -1,0 +1,67 @@
+<style type='text/css' media='screen'>
+/*
+* estili utlizado para a tabela contida pelo painel
+*/
+.table_style {
+    font-family: Arial, Verdana, sans-serif;
+    font-size: 10pt;
+    border-color: collapse;
+}
+
+/*
+* estilo utlizado para o primeiro painel
+*/
+.panel_style1 {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    width: 200px;
+    height: 200px;
+    z-index: 1000;
+}
+
+/*
+* estilo utlizado para o primeiro painel
+*/
+.panel_style2 {
+    position: absolute;
+    left: 100px;
+    top: 80px;
+    width: 200px;
+    height: 200px;
+    z-index: 1000;
+}
+
+</style>
+
+<div id="painel1" class="panel_style1">
+    <table bgcolor="#e0e0e0" width="100%" border="1" height="100%" class="table_style">
+        <tr bgcolor="#707070" height="20px">
+            <td width="100%"><font color="white"><br>janela</font></td>
+            <td align="center" valign="middle">
+                <a href="#" onclik="document.getElementById('painel1').style.display='none'">
+                    <img border=0 src="app.images/gnome.png">
+                </a>
+            </td>
+        </tr>
+        <tr align="top">
+            <td colspan="2"><p align="left">conteudo da janela 1</p></td>
+        </tr>
+    </table>
+</div>
+
+<div id="painel2" class="panel_style2">
+    <table bgcolor="#e0e0e0" width="100%" border="1" height="100%" class="table_style">
+        <tr bgcolor="#707070" height="20px">
+            <td width="100%"><font color="white"><br>janela2</font></td>
+            <td align="center" valign="middle">
+                <a href="#" onclik="document.getElementById('painel2').style.display='none'">
+                    <img border=0 src="app.images/gimp.png">
+                </a>
+            </td>
+        </tr>
+        <tr align="top">
+            <td colspan="2"><p align="left">conteudo da janela 1</p></td>
+        </tr>
+    </table>
+</div>
