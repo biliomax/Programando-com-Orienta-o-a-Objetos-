@@ -98,5 +98,4 @@ class TElement {
     private function close(){
         echo "</{$this->name}>\n";
     }
-
 }
