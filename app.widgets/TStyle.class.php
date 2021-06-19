@@ -44,20 +44,20 @@ class TStyle {
         // verifica se este estilo já foi carregado
         if(!self::$loaded[$this->name]){
 
-            echo "<stayle type='text/css' media='screen'><br>";
+            echo "<style type='text/css' media='screen'>\n";
 
             // exibe a abertura do estilo
-            echo ".{$this->name}<br>";
-            echo "{<br>";
+            echo ".{$this->name}\n";
+            echo "{\n";
             
             if($this->properties){
                 // percorre as propriedades
                 foreach($this->properties as $name => $value){
-                    echo "\t {$name}: {$value};<br>";
+                    echo "\t {$name}: {$value};\n";
                 }
             }
-            echo "}<br>";
-            echo "</style><br>";
+            echo "}\n";
+            echo "</style>\n";
 
             // marca o estilo como já carregado
             self::$loaded[$this->name] = TRUE;

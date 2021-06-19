@@ -16,7 +16,7 @@ abstract class TField {
      * instancia um campo do formulário
      * @param $name = nome do campo
      */
-    public function __construct()
+    public function __construct($name)
     {
         // define algumas características iniciais
         self::setEditable(true);
