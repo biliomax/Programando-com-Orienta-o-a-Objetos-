@@ -9,3 +9,5 @@ professor VARCHAR(40), sala VARCHAR(40), data_inicio DATE,
 encerrada BOOLEAN, ref_curso INTEGER);
 
 CREATE TABLE curso (id INTEGER, descricao VARCHAR(40), duracao INTEGER);
+
+CREATE TABLE pessoa (id INTEGER, nome VARCHAR(44), endereco VARCHAR(40), datanasc DATE, sexo CHAR(1), linguas VARCHAR(40), qualifica TEXT);
