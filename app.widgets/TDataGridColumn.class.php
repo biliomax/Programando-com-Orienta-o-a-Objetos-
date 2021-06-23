@@ -94,7 +94,7 @@ class TDataGridColumn {
     /**
      * método setTransformer()
      * define uma função (callback) a ser aplicada sobre
-     * todo dnado contido nesta colua
+     * todo dado contido nesta colua
      * @param $callback = função do PHP ou do usuário
      */
     public function setTransformer($callback){
