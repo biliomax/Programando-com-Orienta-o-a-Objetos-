@@ -59,11 +59,11 @@ class TDataGrid extends TTable {
     }
 
     /**
-     * métoodo addColum()
+     * métoodo addColumn()
      * adiciona uma coluna à listagem
      * @param $object = objeto do tipo TDataGridColumn
      */
-    public function addColum(TDataGridColumn $object){
+    public function addColumn(TDataGridColumn $object){
         
         $this->colums[] = $object;
     }
