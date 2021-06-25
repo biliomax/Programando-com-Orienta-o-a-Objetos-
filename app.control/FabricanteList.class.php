@@ -1,23 +1,24 @@
 <?php
 /**
- * classe CidadesList
- * cadastro de cidades: contém o formulário e a listagem
+ * classe FabricanteList
+ * cadastro de fabricantes
+ * Contém o formulário e a listagem
  */
-class CidadesList extends TPage {
-
-    private $form;      // formulário de cadastro
-    private $datagrid;  // listagem
+class FabricanteList extends TPage {
+    
+    private $form;  // formulário de cadastro
+    private $datagrid; // listagem
 
     /**
      * método construtor
-     * Cria a página, o formulário e a listagem
+     * cria a página, o formulário e a listagem
      */
-    public function __construct() {
+    public function __construct(){
         
         parent::__construct();
 
         // instancia um formulário
-        $this->form = new TForm('form_cidades');
+        $this->form = new TForm('form_fabricantes');
 
         // instancia uma tabela
         $table = new TTable;
@@ -27,62 +28,36 @@ class CidadesList extends TPage {
 
         // cria os campos do formulário
         $codigo     = new TEntry('id');
-        $descricao  = new TEntry('nome');
-        $estado     = new TCombo('estado');
-
-        // cria um vetor com as opções da combo
-        $items = array();
-        $items['RS'] = 'Rio Grande do Sul';
-        $items['SP'] = 'São Paulo';
-        $items['MG'] = 'Minas Gerais';
-        $items['PR'] = 'Paraná';
-
-        // adiciona as opções na combo
-        $estado->addItems($items);
-
-        // define os tamanhos dos campos
-        $codigo->setSize(40);
-        $estado->setSize(200);
+        $nome       = new TEntry('nome');
+        $site       = new TCombo('site');
 
         // adiciona uma linha para o campo código
         $row = $table->addRow();
-        $row->addCell(new TLabel('Código'));
+        $row->addCell(new TLabel('Código:'));
         $row->addCell($codigo);
 
-        // adiciona uma linha para o campo descrição
+        // adiciona uma linha para o campo nome
         $row = $table->addRow();
-        $row->addCell(new TLabel('Descrição'));
-        $row->addCell($descricao);
+        $row->addCell(new TLabel('Nome:'));
+        $row->addCell($nome);
 
-        // adiciona uma linha para o campo estado
+        // adiciona uma linha para o campo site
         $row = $table->addRow();
-        $row->addCell(new TLabel('Estado'));
-        $row->addCell($estado);
-
-        // cria um botão de ação (salvar)
-        $salve_button = new TButton('salvar');
-        // define a ação do botão
-        $salve_button->setAction(new TAction(array($this, 'onSave')), 'Salvar');
-
-        // adiciona uma linha para a ação do formulário
-        $row = $table->addRow();
-        $row->addCell($salve_button);
-
-        // define quais são os campos do formulário
-        $this->form->setFields(array($codigo, $descricao, $estado, $salve_button));
+        $row->addCell(new TLabel('Site:'));
+        $row->addCell($site);
 
         // instancia objeto DataGrid
         $this->datagrid = new TDataGrid;
 
         // instancia as colunas da DataGrid
-        $codigo   = new TDataGridColumn('id',     'Código', 'right',    50);
-        $nome     = new TDataGridColumn('nome',   'Nome',   'left',    200);
-        $estado   = new TDataGridColumn('estado', 'Estado', 'left',     40);
+        $codigo     = new TDataGridColumn('id',     'Código', 'right',  50);
+        $nome       = new TDataGridColumn('nome',   'Nome',   'left',  180);
+        $site       = new TDataGridColumn('site',   'Site',   'left',  180);
 
         // adiciona as colunas à DataGrid
         $this->datagrid->addColumn($codigo);
         $this->datagrid->addColumn($nome);
-        $this->datagrid->addColumn($estado);
+        $this->datagrid->addColumn($site);
 
         // instancia duas ações da DataGrid
         $action1 = new TDataGridAction(array($this, 'onEdit'));
@@ -126,24 +101,24 @@ class CidadesList extends TPage {
         // inicia transação com o banco 'my_livro'
         TTransaction::open('my_livro');
 
-        // intancia um repositório para Cidade
-        $repository = new TRepository('Cidade');
+        // intancia um repositório para Fabricante
+        $repository = new TRepository('Fabricante');
 
         // cria um critério de seleção, ordenado pelo id
         $criteria = new TCriteria;
         $criteria->setProperty('order', 'id');
 
         // carrega os objetos de acordo com o critério
-        $cidades = $repository->load($criteria);
+        $fabricantes = $repository->load($criteria);
         $this->datagrid->clear();
 
-        if($cidades){
+        if($fabricantes){
 
             // percorre os objetos retornados
-            foreach($cidades as $cidade){
+            foreach($fabricantes as $fabricante){
 
                 // adiciona o objeto na DataGrid
-                $this->datagrid->addItem($cidade);
+                $this->datagrid->addItem($fabricante);
             }
         }
 
@@ -151,7 +126,7 @@ class CidadesList extends TPage {
         TTransaction::close();
         $this->loaded = true;
     }
-
+    
     /**
      * método onSave()
      * executa quando o usuário clicar no botão salvar do formulário
@@ -161,11 +136,11 @@ class CidadesList extends TPage {
         // inicia transação com o banco 'my_livro'
         TTransaction::open('my_livro');
 
-        // obtém os dados no formulário em um objeto CidadeRecord
-        $cidade = $this->form->getData('CidadeRecord');
+        // obtém os dados no formulário em um objeto fabricanteRecord
+        $fabricante = $this->form->getData('FabricanteRecord');
 
         // armazena o objeto
-        $cidade->store();
+        $fabricante->store();
 
         // finaliza a transação
         TTransaction::close();
@@ -176,6 +151,7 @@ class CidadesList extends TPage {
         // recarrega listagem
         $this->onReload();
     }
+
 
     /**
      * método onDelete()
@@ -211,11 +187,11 @@ class CidadesList extends TPage {
         // inicia transação com o banco 'my_livro'
         TTransaction::open('my_livro');
 
-        // instancia objeto CidaadeRecord
-        $cidade = new CidadeRecord($key);
+        // instancia objeto FabricanteRecord
+        $fabricante = new FabricanteRecord($key);
 
         // deleta objeto do banco de dados
-        $cidade->delete();
+        $fabricante->delete();
 
         // finaliza a transação
         TTransaction::close();
@@ -239,11 +215,11 @@ class CidadesList extends TPage {
         // inicia transação com o banco 'my_livro'
         TTransaction::open('my_livro');
 
-        // instancia objeto CidadeRecord
-        $cidade = new CidadeRecord($key);
+        // instancia objeto FabricanteRecord
+        $fabricante = new FabricanteRecord($key);
 
-        // lança os dados da cidade no formulário
-        $this->form->setData($cidade);
+        // lança os dados da fabricante no formulário
+        $this->form->setData($fabricante);
 
         // finaliza a transação
         TTransaction::close();
@@ -252,7 +228,7 @@ class CidadesList extends TPage {
 
     /**
      * método show()
-     * exibe a página
+     * executada quando o usuário clicar no botão excluir
      */
     function show(){
 
