@@ -1,46 +1,47 @@
 <?php
-
 /**
- * classe ClientesList
- * listagem de Clientes
+ * classe ProdutosList
+ * listagem de produtos
  */
-class ClientesList extends TPage {
+class ProdutosList extends TPage {
 
-    private $form; // formulário de buscas
+    private $form;  // formulário de buscas
     private $datagrid; // listagem
-     
+
     /**
      * método construtor
-     * cria a página, o formulário de buscas e a listagem
+     * Cria a página, o formulário de buscas e a listagem
      */
-    public function __construct() {
-        
+
+     public function __construct()
+     {
         parent::__construct();
 
         // instancia um formulário
-        $this->form = new TForm('form_busca_clientes');
+        $this->form = new TForm('form_busca_produtos');
 
         // instancia uma tabela
         $table = new TTable;
 
-        // adciona a tabela ao formulário
+        // adiciona a tabela ao formulário
         $this->form->add($table);
 
         // cria os campos do formulário
-        $nome = new TEntry('nome');
+        $descricao = new TEntry('descricao');
 
-        // adiciona uma linha para o campo nome
+        // adiciona uma linha para o campo descrição
         $row = $table->addRow();
-        $row->addCell(new TLabel('Nome'));
-        $row->addCell($nome);
+        $row->addCell(new TLabel('Descrição:'));
+        $row->addCell($descricao);
 
         // cria dois botões de ação para o formulário
-        $find_button = new TButton('busca');
-        $new_button  = new TButton('cadastra');
+        $find_button = new TButton('buscar');
+        $new_button  = new TButton('cadastrar');
 
         // define as ações dos botões
-        $find_button->setAction(new TAction(array($this, 'onReload')), 'Buscar');
-        $obj = new ClientesForm;
+        $find_button->setAction(new TAction(array($obj, 'onEdit')), 'Buscar');
+
+        $obj = new ProdutosForm;
         $new_button->setAction(new TAction(array($obj, 'onEdit')), 'Cadastrar');
 
         // adiciona uma linha para as ações do formulário
@@ -49,57 +50,45 @@ class ClientesList extends TPage {
         $row->addCell($new_button);
 
         // define quais são os campos do formulário
-        $this->form->setFields(array($nome, $find_button, $new_button));
+        $this->form->setFields(array($descricao, $find_button, $new_button));
 
         // instancia objeto DataGrid
         $this->datagrid = new TDataGrid;
 
         // instancia as colunas da DataGrid
-        $codigo     = new TDataGridColumn('id',         'Código',   'right', 50);
-        $nome       = new TDataGridColumn('nome',       'Nome',     'right', 140);
-        $endereco   = new TDataGridColumn('endereco',   'endereco', 'right', 140);
-        $cidade     = new TDataGridColumn('nome_cidade','Cidade',   'right', 140);
+        $codigo    = new TDataGridColumn('id',          'Código',          'right',  50);
+        $descricao = new TDataGridColumn('descricao',   'Descrição',       'left',  270);
+        $fabrica   = new TDataGridColumn('fabrica',     'nome_fabricante', 'left',   80);
+        $estoque   = new TDataGridColumn('estoque',     'Estoq',            'right', 40);
+        $preco     = new TDataGridColumn('preco_venda', 'Venda',            'right', 40);
 
         // adiciona as colunas à DataGrid
         $this->datagrid->addColumn($codigo);
-        $this->datagrid->addColumn($nome);
-        $this->datagrid->addColumn($endereco);
-        $this->datagrid->addColumn($cidade);
+        $this->datagrid->addColumn($descricao);
+        $this->datagrid->addColumn($fabrica);
+        $this->datagrid->addColumn($estoque);
+        $this->datagrid->addColumn($preco);
 
         // instancia duas ações da DataGrid
-        // $obj = new ClientesForm
+        $obj = new ProdutosForm;
         $action1 = new TDataGridAction(array($obj, 'onEdit'));
         $action1->setLabel('Editar');
-        $action1->setImage('icon.jpg');
+        $action1->setImage('ico_edit.png');
         $action1->setField('id');
 
-        $action2 = new TDataGridAction(array($obj, 'onDelete'));
-        $action2->setLabel('Editar');
-        $action2->setImage('icon.jpg');
-        $action2->setField('id');
+        $action2 = new TDataGridAction(array($this, 'onDelete'));
+        $action1->setLabel('Deletar');
+        $action1->setImage('icon.jpg');
+        $action1->setField('id');
 
         // adiciona as ações à DataGrid
         $this->datagrid->addAction($action1);
         $this->datagrid->addAction($action2);
 
-        // cria o modelo da DataGrid, montado sua estrutura
+        // cria o modelo da DataGrid, montando sua estrutura
         $this->datagrid->createModel();
 
-        // monta a página através de uma tabela
-        $table = new TTable;
-        $table->width = '100%';
-
-        // cria uma linha para o formulário
-        $row = $table->addRow();
-        $row->addCell($this->form);
-
-        // cria uma linha para a datagrid
-        $row = $table->addRow();
-        $row->addCell($this->datagrid);
-
-        // adiciona a tabela à página
-        parent::add($table);
-    }
+     }
 
     /**
      * método onReload()
@@ -110,36 +99,34 @@ class ClientesList extends TPage {
         // inicia transação com o banco 'my_livro'
         TTransaction::open('my_livro');
 
-        // intancia um repositório para Cliente
-        $repository = new TRepository('Cliente');
+        // intancia um repositório para Produto
+        $repository = new TRepository('Produto');
 
-        // cria um critério de seleção de dados
+        // cria um critério de seleção, ordenado pelo id
         $criteria = new TCriteria;
-        
-        // ordena pelo campo id
         $criteria->setProperty('order', 'id');
-        
-        // obtém os dados do formulário de buscas
+
+        // obtém os dados do formulário de busca
         $dados = $this->form->getData();
-
+        
         // verifica se o usuário preencheu o formulário
-        if($dados->nome){
+        if($dados->descricao){
 
-            // filtra pelo nome do cliente
-            $criteria->add(new TFilter('nome', 'like', "%{$dados->nome}%"));
+            // filtra pela descrição do peoduto
+            $criteria->add(new TFilter('descricao', 'like', "%{$dados->descricao}%"));
         }
-
-        // carrega os produtos que satisfazem o critério
-        $clientes = $repository->load($criteria);
+        
+        // carrega os objetos de acordo com o critério
+        $produtos = $repository->load($criteria);
         $this->datagrid->clear();
 
-        if($clientes){
+        if($produtos){
 
             // percorre os objetos retornados
-            foreach($clientes as $cliente){
+            foreach($produtos as $produto){
 
                 // adiciona o objeto na DataGrid
-                $this->datagrid->addItem($cliente);
+                $this->datagrid->addItem($produto);
             }
         }
 
@@ -182,11 +169,11 @@ class ClientesList extends TPage {
         // inicia transação com o banco 'my_livro'
         TTransaction::open('my_livro');
 
-        // instancia objeto ClienteRecord
-        $cliente = new ClienteRecord($key);
+        // instancia objeto ProdutoRecord
+        $produto = new ProdutoRecord($key);
 
         // deleta objeto do banco de dados
-        $cliente->delete();
+        $produto->delete();
 
         // finaliza a transação
         TTransaction::close();
@@ -200,7 +187,7 @@ class ClientesList extends TPage {
 
     /**
      * método show()
-     * executada quando o usuário clicar no botão excluir
+     * exibe a página
      */
     function show(){
 
