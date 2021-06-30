@@ -33,4 +33,38 @@ class VendaRecord extends TRecord {
             $item->store();
         }
     }
+
+    /**
+     * função get_itens()
+     * retorna os itens da venda
+     */
+    public function get_itens(){
+
+        // instancia um repositório de Item
+        $repositorio = new TRepository('Item');
+
+        // define o critério de seleção
+        $criterio = new TCriteria;
+        $criterio->add(new TFilter('id_venda', '=', $this->id));
+
+        // carega a coleção de itens
+        $this->itens = $repositorio->load($criterio);
+
+        // return od itens
+        return $this->itens;
+    }
+
+    /**
+     * método get_cliente()
+     * retorna o objeto cliente vinculado à venda
+     */
+    function get_cliente(){
+
+        // instancia ClienteRecord, carrega
+        // na memória o cliente de código $this->id_cliente
+        $cliente = new ClienteRecord($this->id_cliente);
+
+        // retorna o objeto instanciado
+        return $cliente;
+    }
 }
