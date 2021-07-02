@@ -1,9 +1,9 @@
 <?php
 function getNome($codigo){
 
-    // verifica a passagem do parÃ¢metro
+    // verifica a passagem do parâmetro
     if(!$codigo) {
-        throw new SoapFault('Client', 'ParÃ¢metro nÃ£o preenchido');
+        throw new SoapFault('Client', 'Parâmetro não preenchido');
     }
 
     // conecta ao banco de dados
@@ -11,7 +11,7 @@ function getNome($codigo){
     
     if(!$id)
 
-        throw new SoapFault("Server", "ConexÃ£o nÃ£o estabelecida");
+        throw new SoapFault("Server", "Conexão não estabelecida");
     
 
     // realiza consulta ao banco de dados
@@ -20,7 +20,7 @@ function getNome($codigo){
 
     if($matriz == null)
 
-        throw new SoapFault("Server", "Cliente nÃ£o encontrado");
+        throw new SoapFault("Server", "Cliente não encontrado");
     // retorna os dados
     return $matriz[0];
 
